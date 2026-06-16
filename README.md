@@ -26,6 +26,19 @@ This repository creates an interactive, bureaucratic-grade dashboard to evaluate
 
 ---
 
+## Project Outputs
+
+### Punjab Machinery Analytics
+
+* Government Decision Support Dashboard
+* Policy Zone Classification
+* Intervention Priority Index
+* CRM / SMAM / CDP analytics
+* End-to-End Forensic Audit
+* Punjab Government presentation toolkit
+
+---
+
 ## Results at a Glance
 
 * **12,467** village polygons mapped.
