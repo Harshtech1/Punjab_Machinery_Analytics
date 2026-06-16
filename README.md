@@ -1,28 +1,38 @@
 # Punjab Machinery Analytics
 
-**Village-Level Agricultural Machinery Deployment, Methane Intelligence, and Decision Support Dashboard for Punjab**
+**Government Decision Support Dashboard**
+
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![Earth Engine](https://img.shields.io/badge/Google_Earth_Engine-Active-brightgreen)
+![GeoPandas](https://img.shields.io/badge/GeoPandas-Spatial_Analysis-orange)
+![License](https://img.shields.io/badge/License-MIT-purple)
+
+![Dashboard](docs/images/dashboard_home.png)
 
 ---
 
 ## Executive Summary
 
-The **Punjab Machinery Analytics** project provides an end-to-end framework for identifying agricultural methane emission hotspots and evaluating the efficacy of government machinery deployment.
+The **Punjab Machinery Analytics** project is an advanced, production-ready Government Decision Support System. It integrates spatial environmental data with official government agricultural machinery records. 
 
-* **Phase 1** generated precise village-level methane estimates using Sentinel-5P TROPOMI data integrated with the Mission Antyodaya 2020 infrastructure dataset, powered by an XGBoost model.
-* **Phase 2** integrated raw government machinery deployment records (In-Situ, Ex-Situ, Prime Movers, and General) into the village-level methane layer.
-* The project evaluates machinery allocation patterns against methane hotspots to quantify the real-world impact of subsidy schemes like CRM, SMAM, and CDP.
-* The final output is a comprehensive **Government Decision Support Dashboard** designed for bureaucrats, policymakers, and ICAR scientists to optimize future interventions.
+By fusing:
+- Village-level methane predictions (from Phase 1)
+- CRM (Crop Residue Management) machinery records
+- SMAM (Sub-Mission on Agricultural Mechanization) machinery records
+- CDP (Crop Diversification Programme) machinery records
+- Punjab village boundaries
+
+This repository creates an interactive, bureaucratic-grade dashboard to evaluate whether government subsidies for stubble-clearing machinery are effectively reducing methane hotspots in Punjab.
 
 ---
 
-## Key Results
+## Results at a Glance
 
-* **12,467** village polygons analyzed across Punjab.
-* **3,339** verified machinery matches at the village level.
-* **21,796** machinery transactions audited and categorized.
-* **Target Leakage Audit:** ✅ PASS
-* **Statistical Robustness Audit:** ✅ PASS
-* **Dashboard Truthfulness Audit:** ✅ PASS
+* **12,467** village polygons mapped.
+* **21,796** machinery transactions processed and audited.
+* **3,339** verified village-level machinery matches.
+* Statistically significant inverse correlation observed between high In-Situ machinery density and methane emissions.
+* Forensic Audit Status: **PASS** across all target leakage and robustness checks.
 
 ---
 
@@ -30,15 +40,46 @@ The **Punjab Machinery Analytics** project provides an end-to-end framework for 
 
 ```mermaid
 graph TD
-    A[Mission Antyodaya 2020] --> C
-    B[Sentinel-5P Satellite Processing] --> C
-    C[Feature Engineering 1050+ Features] --> D
-    D[XGBoost Methane Prediction] --> E
-    E[Village-Level Methane Layer] --> F
-    F[Government Machinery Registry Integration] --> G
-    G[Policy Zone Classification] --> H
-    H[Government Decision Support Dashboard]
+    A[Village-Level Methane Layer Phase 1] --> C
+    B[Government Machinery Registry] --> C
+    C[Fuzzy Matching & Integration] --> D
+    D[Policy Zone Classification] --> E
+    E[Causal Inference Analysis] --> F
+    F[Intervention Priority Scoring] --> G
+    G[Government Decision Support Dashboard]
 ```
+
+---
+
+## Dashboard Layers
+
+### Methane Layer
+Visualizes the highly granular predicted CH₄ hotspots across Punjab.
+![Methane](docs/images/methane_layer.png)
+
+### Machinery Layer
+Visualizes the deployment density of In-Situ, Ex-Situ, and Prime Mover agricultural machinery.
+![Machinery](docs/images/machinery_layer.png)
+
+### Policy Zones
+Classifies every village into success/failure quadrants based on high/low machinery vs high/low methane.
+![Policy Zones](docs/images/policy_zones.png)
+
+### Priority Villages
+Flags critical villages requiring immediate bureaucratic intervention.
+![Priority](docs/images/priority_villages.png)
+
+---
+
+## Statistical Results
+
+The statistical validity of the policy interventions is documented through rigorous causal inference and density analysis.
+
+### Treatment Intensity
+![Treatment Intensity](docs/images/barchart_ch4_by_intensity.png)
+
+### Density Quintiles
+![Density Quintiles](docs/images/barchart_density_quintiles.png)
 
 ---
 
@@ -51,55 +92,58 @@ Punjab_Machinery_Analytics/
 ├── src/            # Core Python modules for analysis and merging
 ├── configs/        # Configuration files and path mappings
 ├── gee_layers/     # Google Earth Engine JavaScript scripts and geojson
-└── audit/          # Forensic robustness and data-quality audit reports
+├── audit/          # Forensic robustness and data-quality audit reports
+└── docs/images/    # High-resolution presentation assets
 ```
-
-*   `data/`: Houses the raw machinery registry and the Phase 1 prediction layer.
-*   `outputs/`: Contains all visual analytics, causal inference charts, and the final HTML dashboard.
-*   `src/`: Modularized Python pipeline for data merging, spatial analysis, and dashboard generation.
-*   `configs/`: Centralized configurations.
-*   `gee_layers/`: Earth Engine scripts (v1-v10) for cloud-based spatial visualization.
-*   `audit/`: Exhaustive forensic reports guaranteeing the integrity and statistical validity of the findings.
 
 ---
 
 ## Methodology
 
-1. **Satellite Processing:** Extraction of high-resolution methane readings (CH₄) using Sentinel-5P.
-2. **Feature Engineering:** Creation of an extensive 1050+ feature matrix from Mission Antyodaya data.
-3. **Machine Learning:** Training an XGBoost regressor to predict CH₄ hotspots based on village infrastructure and agricultural metrics.
-4. **Village Mapping:** Generating a precise spatial layer of 12,467 Punjab villages.
-5. **Machinery Integration:** Fuzzy matching and merging of 21,796 government machinery records to the village polygons.
+1. **Village Mapping:** Generating a precise spatial layer of 12,467 Punjab villages.
+2. **Machinery Integration:** Fuzzy matching and merging of 21,796 government machinery records to the village polygons.
+3. **Density Normalization:** Adjusting machinery allocations against cultivated area and village size.
+4. **Causal Inference:** Running OLS regression and SHAP impact analysis to evaluate scheme efficacy.
+5. **Policy Classification:** Assigning each village to an actionable "Policy Zone".
 6. **Forensic Audit:** Rigorous verification covering target leakage, spatial leakage, and government readiness.
-7. **Dashboard Creation:** Development of interactive, map-based executive decision support systems (both local HTML and GEE).
+7. **Dashboard Creation:** Development of interactive, map-based executive decision support systems.
 
 ---
 
-## Dashboard Features
+## How to Run
 
-The final executive dashboard includes toggleable layers for:
-* Methane Layer (Predicted CH₄ ppb)
-* In-Situ Layer
-* Ex-Situ Layer
-* Prime Movers
-* CRM (Crop Residue Management Scheme)
-* SMAM (Sub-Mission on Agricultural Mechanization)
-* CDP (Crop Diversification Programme)
-* Scheme Score
-* Policy Zones (Intervention Success, Policy Failure, Biomass Procurement, Baseline)
-* Intervention Priority Index
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Harshtech1/Punjab_Machinery_Analytics.git
+   cd Punjab_Machinery_Analytics
+   ```
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **Execute the full pipeline:**
+   ```bash
+   python main.py --step all
+   ```
+4. **Generate the offline HTML Dashboard:**
+   ```bash
+   python build_html_dashboard.py
+   ```
 
 ---
 
-## Audit Framework
+## Government Applications
 
-To ensure the highest scientific rigor, the project is subjected to a comprehensive forensic audit framework:
-* **Merge Audit:** Validates the fuzzy-matching logic between the registry and Antyodaya villages.
-* **Coverage Audit:** Quantifies data availability and spatial representation.
-* **Target Leakage Audit:** Ensures predictive models do not inadvertently train on future targets.
-* **Spatial Leakage Audit:** Prevents geographical clustering bias in train/test splits.
-* **Feature Stability Audit:** Monitors drift and correlation consistency across variables.
-* **Government Readiness Audit:** Verifies that the final outputs are actionable and statistically sound for bureaucratic decision-making.
+* **Subsidy Allocation Optimization:** Ensure future funding is directed to `Policy Failure Zones` exhibiting high CH₄ despite high machinery counts.
+* **CRM Targeting:** Identify villages requiring urgent Crop Residue Management machinery.
+* **Biomass Procurement Planning:** Optimize logistics for Ex-Situ balers based on proximity to hotspots and custom hiring centers.
+* **Methane Hotspot Monitoring:** Track high-emission zones for targeted enforcement.
+
+---
+
+## Research Impact
+
+This framework fundamentally shifts the analysis of agricultural subsidies from retrospective financial auditing to proactive, spatial-environmental efficacy tracking. It allows governments to see *exactly* where their budget is impacting the climate in real-time.
 
 ---
 
@@ -112,60 +156,14 @@ To ensure the highest scientific rigor, the project is subjected to a comprehens
 
 ---
 
-## Government Use Cases
-
-* **CRM Targeting:** Identify villages requiring urgent Crop Residue Management machinery.
-* **Biomass Procurement Planning:** Optimize logistics for Ex-Situ balers based on proximity to hotspots and custom hiring centers.
-* **Methane Hotspot Monitoring:** Track high-emission zones for targeted enforcement and subsidy allocation.
-* **Subsidy Allocation Optimization:** Ensure future funding is directed to `Policy Failure Zones` exhibiting high CH₄ despite high machinery counts.
-
----
-
-## Installation
-
-```bash
-git clone https://github.com/Harshtech1/Punjab_Machinery_Analytics.git
-cd Punjab_Machinery_Analytics
-pip install -r requirements.txt
-```
-
----
-
-## Running the Pipeline
-
-Execute the full end-to-end pipeline, or run specific steps:
-
-```bash
-# Run the forensic audit
-python main.py --step audit
-
-# Generate the HTML decision support dashboard
-python build_html_dashboard.py
-```
-
----
-
-## Outputs
-
-### Executive GEE Dashboard
-![GEE Dashboard](presentation/Slide_01_Methane_Map.png)
-
-### Policy Zones Classification
-![Policy Zones](presentation/Slide_04_Policy_Zones.png)
-
-### Intervention Priority Villages
-![Priority Villages](presentation/Slide_05_Priority_Villages.png)
-
----
-
 ## Citation
 
 If you utilize this framework or dashboard in your research or policy briefings, please cite:
 
-> *Punjab Machinery Analytics: Village-Level Methane Intelligence & Decision Support Framework.* IIT Ropar, 2026.
+> *Punjab Machinery Analytics: Government Decision Support System.* IIT Ropar, 2026.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License
