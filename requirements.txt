@@ -1,0 +1,17 @@
+pandas
+numpy
+scipy
+scikit-learn
+xgboost
+joblib
+geopandas
+folium
+branca
+matplotlib
+seaborn
+thefuzz[speedup]
+pyyaml
+rapidfuzz
+shapely
+statsmodels
+shap

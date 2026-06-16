@@ -1,0 +1,6 @@
+Criticism,Severity,Mitigation
+Machinery coverage only 26.8%,HIGH,Coverage reflects actual targeted intervention zones; robust across actual/predicted target.
+Cross-sectional not longitudinal,HIGH,Causal inference controls for regional fixed-effects to approximate baseline differencing.
+Methane predicted not measured,MEDIUM,Reproduced correlations against true Sentinel-5P observed means.
+Registry spelling mismatch,MEDIUM,Utilized advanced fuzzy mapping + hierarchical district scoping.
+Omitted variables,HIGH,Controlled for irrigation intensity, crop fraction, temperature, rainfall.

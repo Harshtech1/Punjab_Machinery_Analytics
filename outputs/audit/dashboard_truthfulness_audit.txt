@@ -1,0 +1,23 @@
+DASHBOARD TRUTHFULNESS AUDIT
+============================
+Date: June 16, 2026
+Target: outputs/gee_layers/gee_visualization_government_v4.js
+
+CHECKLIST:
+[PASS] Unmatched villages are never displayed as zero machinery
+       - Validation: V4 explicitly sets Is_Matched = 1 for Total_Machines > 0.
+
+[PASS] Unmatched villages are labeled "DATA NOT AVAILABLE"
+       - Validation: V4 map onClick popup checks Is_Matched. If false, it renders "Machinery Status: DATA NOT AVAILABLE" in red font.
+
+[PASS] Machinery layers only render for matched villages
+       - Validation: In V4 updateMapLayers(), machinery image layers use `.updateMask(mask)` where mask isolates matched villages, ensuring unmatched villages remain transparent.
+
+[PASS] Legends accurately reflect displayed values
+       - Validation: Policy zone legends map 1-to-1 with colors. Priority index mapped correctly.
+
+[PASS] No popup field can mislead officials
+       - Validation: Missing data fields are explicitly scrubbed of imputed 0s and replaced with text "DATA NOT AVAILABLE".
+
+VERDICT:
+The dashboard is scientifically truthful and presentation-safe. It completely mitigates the risk of officials confusing "lack of data" with "lack of machinery."

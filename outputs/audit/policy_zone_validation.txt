@@ -1,0 +1,17 @@
+POLICY ZONE VALIDATION AUDIT
+============================
+
+Running the aggregate_histogram on the ingested shapefile asset yields:
+print(mergedVillages.aggregate_histogram('Policy_Zon'));
+
+Results:
+- Policy Failure Zone: 0
+- Intervention Success Zone: 0
+- Biomass Procurement Zone: 0
+- Baseline Zone: 0
+- Unclassified: 12,467
+
+Conclusion:
+The `Policy_Zon` values were lost during the shapefile creation/ingestion process.
+All 12,467 villages currently read as "Unclassified".
+This explains why the Priority Index calculation is not applying the Policy Score correctly. The root cause needs to be fixed at the data pipeline level before re-ingesting the shapefile to Earth Engine.

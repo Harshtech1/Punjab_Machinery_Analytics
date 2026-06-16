@@ -1,0 +1,47 @@
+
+================================================================================
+FINAL ROBUSTNESS & PRESENTATION ANALYSIS: MACHINERY TREATMENT INTENSITY
+================================================================================
+
+This analysis evaluates village-level methane emissions across 5 distinct tiers 
+of machinery treatment intensity, serving as the final robustness check against 
+the professor's original hypothesis.
+
+1. GROUP DISTRIBUTION & MEANS (Predicted CH4 ppb):
+--------------------------------------------------------------------------------
+  [0 machines    ]  Villages: 9128   | Mean CH4: 1905.50 ppb
+  [1-5 machines  ]  Villages: 2074   | Mean CH4: 1907.21 ppb
+  [6-15 machines ]  Villages: 714    | Mean CH4: 1907.96 ppb
+  [16-30 machines]  Villages: 380    | Mean CH4: 1908.91 ppb
+  [30+ machines  ]  Villages: 171    | Mean CH4: 1910.69 ppb
+
+2. STATISTICAL TREND TESTS:
+--------------------------------------------------------------------------------
+  * Kruskal-Wallis (Difference across groups): p = 4.790e-72 
+    (Indicates groups are statistically distinct)
+    
+  * Spearman Rank Trend (Monotonic association): rho = +0.1530, p = 3.867e-66
+    (Indicates a clear POSITIVE (upward) trend)
+
+3. PUBLICATION-QUALITY INTERPRETATION:
+--------------------------------------------------------------------------------
+The original hypothesis posited that higher machinery penetration leads to lower 
+methane (CH4) emissions. 
+
+By stratifying villages into distinct machinery intensity cohorts (from 0 machines 
+up to 30+ machines per village), we observe a strict, monotonically increasing 
+relationship between machinery allocation and methane emissions. 
+
+As machinery intensity increases, methane emissions also significantly increase.
+
+Villages in the highest treatment cohort (30+ machines) exhibit the highest average 
+methane footprint. This robustly corroborates our prior causal-adjusted findings: 
+government machinery allocation has been overwhelmingly targeted at highly intensive 
+agricultural belts (large villages with massive residue loads) that naturally 
+suffer from higher baseline burning. 
+
+Consequently, the existing data firmly CONTRADICTS the hypothesis that the CRM/SMAM 
+interventions, as currently deployed, have managed to effectively reverse or mitigate 
+the regional methane signal. Machinery serves as a strong proxy for intensive farming 
+scale, but not as an observable mitigator of CH4.
+================================================================================

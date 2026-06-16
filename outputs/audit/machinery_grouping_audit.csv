@@ -1,0 +1,6 @@
+Metric,Count
+Raw Row Count (Total Machines),21796
+Unique Village Names,4198
+Unique District + Village,4550
+Unique District + Block + Village,4703
+Final Merged Village Count (Matched),3339

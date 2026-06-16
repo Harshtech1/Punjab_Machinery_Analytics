@@ -1,0 +1,50 @@
+AUDIT REPORT: gee_visualization_government_v5.js
+================================================
+
+1. Issue: District selection draws heavy black overlay masking villages.
+   Resolution: Fixed in V6. Width changed from 2 to 0.5, and fillColor set to '00000000' (transparent). Zoom adjusted to not mask villages.
+
+2. Issue: Policy_Zon = Unclassified, Priority Index = 3/4.
+   Audit Findings:
+   - The Earth Engine asset `punjab_machinery_ch4_shapefile` was verified via Python EE API.
+   - The field `Policy_Zon` has lost its values, most likely during the CSV -> GeoJSON -> Shapefile -> EE ingestion pipeline (possibly due to string truncation or DBF string limits, or values not joining correctly).
+   
+3. Diagnostics (EE aggregate_histogram for Policy_Zon):
+   print(mergedVillages.aggregate_histogram('Policy_Zon'));
+   Result: {'Unclassified': 12467}
+
+4. Zone Counts:
+   - Policy Failure Zone: 0
+   - Intervention Success Zone: 0
+   - Biomass Procurement Zone: 0
+   - Baseline Zone: 0
+   - Unclassified: 12,467
+
+5. Priority Index calculation audit:
+   print(mergedVillages.aggregate_stats('Intervention_Priority'));
+   Result:
+   {
+      "max": 4,
+      "mean": 3.02,
+      "min": 2,
+      "total_count": 12467,
+      "total_sd": 0.58
+   }
+   The priority score computation correctly included `polScore` in the code, but because `Policy_Zon` is "Unclassified" for all features, `polScore` always evaluates to 0. Thus the calculation currently relies entirely on CH4 and Machinery scores, completely dropping the policy score component. This needs fixing at the data pipeline layer (Shapefile generation).
+
+6. Issue: Methane Visualization stretch.
+   Resolution: Replaced fixed min/max with dynamic percentile-based scaling (P5–P95) in V6, allowing hotspots to become visually distinguishable.
+
+7. Issue: Checkbox layers.
+   Resolution: Replaced with a single dropdown Layer Selector in V6. Only one thematic layer visible at a time.
+
+8. Issue: Opacity sliders.
+   Resolution: Removed entirely in V6 to clean up the UI for executive presentations.
+
+9. Issue: Missing District Labels.
+   Resolution: Added permanent district labels and thick district boundary overlays (width 1.5). 
+
+10. Issue: Village Boundaries.
+    Resolution: Added permanent village boundaries with width 0.3 and color #666666 to avoid blend-in.
+
+11. Action: gee_visualization_government_v6.js generated with Executive Presentation Quality layout, snapshot panel, and publication-quality palette for Methane.

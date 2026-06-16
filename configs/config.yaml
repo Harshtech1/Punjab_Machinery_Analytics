@@ -1,0 +1,116 @@
+system:
+  project_name: "Punjab Machinery Analytics - Phase 2"
+  version: "1.0.0"
+  phase1_project: "../GeoMethane_Punjab"
+  gee_project_id: "agrivision-38cc2"
+
+paths:
+  # Phase 1 source (read-only)
+  phase1_matrix: "../GeoMethane_Punjab/data/processed/final_engineered_matrix.csv"
+  phase1_model: "../GeoMethane_Punjab/weights/Punjab_Production_XGB.pkl"
+  phase1_features: "../GeoMethane_Punjab/weights/Punjab_Production_XGB_features.pkl"
+  phase1_shapefile: "../GeoMethane_Punjab/Shapefile/punjab_villages_shapefile.zip"
+  phase1_raw_survey: "../GeoMethane_Punjab/data/raw/Official Mission Antyodaya 2020 Dataset for Punjab.csv"
+
+  # Phase 2 inputs
+  machinery_raw: "data/raw/Machine_Cleaned_Final.xlsx"
+
+  # Phase 2 outputs
+  phase1_export: "data/processed/phase1_prediction_layer.csv"
+  merged_output: "data/merged/Punjab_CH4_Machinery_Master.csv"
+  unmatched_output: "data/merged/manual_review_unmatched.csv"
+  merge_audit_report: "outputs/policy_reports/merge_audit.txt"
+  correlation_report: "outputs/correlation_tables/correlation_report.csv"
+  policy_zones_output: "outputs/policy_reports/village_policy_zones.csv"
+  charts_dir: "outputs/charts/"
+  maps_dir: "outputs/maps/"
+  gee_geojson: "outputs/gee_layers/punjab_machinery_ch4.geojson"
+  gee_js_script: "outputs/gee_layers/gee_visualization.js"
+
+columns:
+  # Phase 1 identity keys
+  village_code: "VILLAGE CODE"
+  village_name: "VILLAGE NAME"
+  district: "DISTRICT NAME"
+  latitude: "VILLAGE LATITUDE"
+  longitude: "VILLAGE LONGITUDE"
+  vlcode: "vlcode"
+
+  # CH4 targets
+  ch4_actual: "CH4_Annual_Average"
+  ch4_predicted: "Predicted_CH4_ppb"
+
+  # Machinery columns (exact names from Village_Machinery_Matrix_MergeReady.xlsx)
+  machinery_village: "VillageName"
+  machinery_district: "DistrictName"
+  machinery_block: "BlockName"
+  machinery_cols:
+    - "CRM"
+    - "SMAM"
+    - "CDP"
+    - "In_Situ"
+    - "Ex_Situ"
+    - "Prime_Mover"
+    - "General"
+    - "Total_Machines"
+
+  # Control variables for correlation
+  control_variables:
+    - "TOTAL CULTIVABLE AREA (IN HECTARES), IF IN ACRES DIVIDE BY 2.47"
+    - "NET SOWN AREA (IN HECTARES) , IF IN ACRES DIVIDE BY 2.47"
+    - "cropland_frac"
+
+merge:
+  # Merge configuration
+  merge_strategy:
+    stage1:
+      - "DISTRICT"
+      - "BLOCK"
+      - "VILLAGE"
+    stage2:
+      - "DISTRICT"
+      - "VILLAGE"
+    unmatched_fill_zero: true
+
+  # Fuzzy matching thresholds
+  exact_match: 1.00
+  fuzzy_high: 0.92       # block-restricted Jaro-Winkler threshold
+  fuzzy_medium: 0.88     # district-only Jaro-Winkler threshold
+
+  # Confidence scores assigned per merge stage
+  confidence_exact: 1.00
+  confidence_fuzzy_high: 0.90
+  confidence_fuzzy_medium: 0.75
+  confidence_unmatched: 0.00
+
+  # District name normalization map
+  district_normalization:
+    "FEROZEPURE": "FIROZEPUR"
+    "FIROZPUR": "FIROZEPUR"
+    "SAS NAGAR": "S.A.S NAGAR"
+    "SAHIBZADA AJIT SINGH NAGAR": "S.A.S NAGAR"
+    "SHAHEED BHAGAT SINGH NAGAR": "SHAHID BHAGAT SINGH NAGAR"
+    "NAWANSHAHR": "SHAHID BHAGAT SINGH NAGAR"
+
+policy_zones:
+  # CH4 thresholds (ppb) — based on Phase 1 distribution
+  ch4_high_percentile: 75
+  ch4_critical_percentile: 90
+
+  # Machinery thresholds (machine count)
+  machinery_low_percentile: 25   # below 25th percentile = low machinery
+  machinery_high_percentile: 75  # above 75th percentile = high machinery
+
+  # Zone labels
+  zones:
+    policy_failure: "Policy Failure Zone"
+    biomass_procurement: "Biomass Procurement Zone"
+    intervention_success: "Intervention Success Zone"
+    baseline: "Baseline Zone"
+
+gee:
+  asset_id: "projects/agrivision-38cc2/assets/punjab_machinery_ch4"
+  ch4_min: 1860.0
+  ch4_max: 1930.0
+  ch4_palette: ["#ffffcc", "#ffcc66", "#ff9933", "#ff3300", "#990000"]
+  machinery_palette: ["#f7fbff", "#6baed6", "#2171b5", "#08306b"]

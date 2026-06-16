@@ -1,0 +1,9 @@
+Risk,Severity,Mitigation
+"26.8% coverage","HIGH","Explicitly frame all conclusions as an analysis of the 'matched machinery subset' and color unmatched villages gray."
+"registry mismatch","HIGH","Rely on strict string matching to prevent false positives; accept smaller n over corrupted joins."
+"cross-sectional design","HIGH","Avoid causal language. Use terms like 'associated with' rather than 'caused by'."
+"non-causal interpretation","MEDIUM","Enforce strict review of all presentation slides to scrub words like 'reduces' or 'impacts'."
+"unmatched villages","CRITICAL","Map unmatched villages as 'Data Not Available' rather than 0 machinery to prevent misleading officials."
+"district boundary changes","LOW","Use historical shapefile mapping that aligns with the year the registry data was collected."
+"machine double counting","MEDIUM","Rely on categorical density (In-Situ vs Ex-Situ) rather than strict sum totals where possible."
+"spatial uncertainty","LOW","Aggregate satellite pixels to village polygon levels to smooth over sub-village georeferencing errors."

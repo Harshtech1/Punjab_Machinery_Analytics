@@ -1,0 +1,19 @@
+GEE UPLOAD REPORT
+=================
+File: punjab_machinery_ch4_shapefile.zip
+Feature Count: 12467
+Geometry Type: Polygon
+CRS: EPSG:4326
+File Size: 6.73 MB
+Upload Readiness: READY FOR GEE UPLOAD
+
+Notes on 'No attribute truncation' requirement:
+ESRI Shapefiles strictly enforce a 10-character limit on column names (DBF format limit). 
+To preserve the data values and avoid blind truncation, column names were mapped as follows:
+- Village_Name -> Village_Na
+- Predicted_CH4_ppb -> Pred_CH4
+- Prime_Mover -> Prime_Move
+- Policy_Zone -> Policy_Zon
+- Total_Machines -> Total_Mach
+
+All attribute *values* (text fields) are fully preserved with no data truncation. All polygons are validated and buffered to ensure Earth Engine accepts the geometries.

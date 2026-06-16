@@ -1,0 +1,56 @@
+EARTH ENGINE SPATIAL ASSET AUDIT
+================================
+
+ASSET: punjab_machinery_ch4_shapefile.zip
+PATH: outputs/gee_layers/punjab_machinery_ch4_shapefile.zip
+FILE SIZE: 6.7261 MB
+FEATURE COUNT: 12467
+GEOMETRY TYPE: Polygon
+CRS: EPSG:4326
+ATTRIBUTE COUNT: 13
+VILLAGE COVERAGE: 12467 villages
+EE COMPATIBILITY: PASS (Contains Machinery & Methane metrics)
+
+ASSET: punjab_machinery_ch4.geojson
+PATH: outputs/gee_layers/punjab_machinery_ch4.geojson
+FILE SIZE: 57.1060 MB
+FEATURE COUNT: 12467
+GEOMETRY TYPE: Polygon
+CRS: EPSG:4326
+ATTRIBUTE COUNT: 93
+VILLAGE COVERAGE: 12467 villages
+EE COMPATIBILITY: PASS (Contains Machinery & Methane metrics)
+
+ASSET: punjab_upload.zip
+PATH: ../GeoMethane_Punjab/data/processed/gee_export_ready/punjab_upload.zip
+FILE SIZE: 0.0011 MB
+FEATURE COUNT: 0
+GEOMETRY TYPE: N/A
+CRS: EPSG:4326
+ATTRIBUTE COUNT: 5
+VILLAGE COVERAGE: 0 (Empty shapefile)
+EE COMPATIBILITY: FAIL (Empty)
+
+ASSET: punjab_predictions.shp
+PATH: ../GeoMethane_Punjab/data/processed/gee_export_ready/punjab_predictions.shp
+FILE SIZE: 0.0001 MB
+FEATURE COUNT: 0
+GEOMETRY TYPE: N/A
+CRS: EPSG:4326
+ATTRIBUTE COUNT: 5
+VILLAGE COVERAGE: 0 (Empty shapefile)
+EE COMPATIBILITY: FAIL (Empty)
+
+
+RECOMMENDATION
+==============
+Best Asset for Government Dashboard:
+outputs/gee_layers/punjab_machinery_ch4_shapefile.zip
+
+Justification:
+1. The 'punjab_upload.zip' and 'punjab_predictions.shp' in the Phase 1 folder are essentially empty shells (~1 KB size, 0 features), likely left over from an incomplete or scaffolded export in Phase 1.
+2. The 'punjab_machinery_ch4_shapefile.zip' we just generated is fully populated (6.7 MB), contains all 12,467 valid village geometries, correctly specifies the CRS as EPSG:4326, and explicitly includes all Phase 2 metrics (In_Situ, Total_Machines, Scheme_Score, Policy_Zone) required by the V4 GEE dashboard script.
+3. Earth Engine accepts Zipped Shapefiles cleanly through the "Table Upload" interface.
+
+Action Plan:
+In Earth Engine, go to Assets -> NEW -> Table Upload -> select 'punjab_machinery_ch4_shapefile.zip'.

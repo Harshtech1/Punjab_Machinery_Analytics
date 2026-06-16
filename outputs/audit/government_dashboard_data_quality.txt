@@ -1,0 +1,14 @@
+GOVERNMENT DASHBOARD DATA QUALITY AUDIT
+=======================================
+
+1. Total villages (in GeoJSON): 12,467
+2. Villages with machinery > 0: 3,339
+3. Villages with machinery = 0: 9,128
+4. Villages unmatched during merge (imputed): 9,128
+5. Villages where machinery values were imputed to zero: 9,128
+6. Villages with null machinery values before export: 0
+
+CRITICAL FINDING:
+Your concern was 100% correct. Only 3,339 villages actually matched the machinery dataset. The remaining 9,128 villages in the Punjab shapefile were unmatched during the merge and automatically imputed to exactly 0 for all machinery fields (`fillna(0)`). 
+
+Presenting these 9,128 villages as "Confirmed 0 Machines" to the government is dangerous because we don't know if they truly lack machinery or simply failed to match due to spelling differences. This distinction must be addressed or clarified before the presentation.

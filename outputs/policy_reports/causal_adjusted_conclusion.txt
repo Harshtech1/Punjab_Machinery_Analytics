@@ -1,0 +1,60 @@
+================================================================================
+  PUNJAB MACHINERY ANALYTICS — CAUSAL-ADJUSTED ANALYSIS CONCLUSION
+================================================================================
+
+OVERVIEW:
+This analysis tests the hypothesis that machinery penetration reduces village-level
+and district-level CH4 emissions, after strictly controlling for environmental and
+agricultural confounding variables (area, climate, vegetation, district fixed effects).
+
+1. DISTRICT LEVEL FINDINGS:
+  - Correlation between Avg CRM and Avg Predicted CH4: +0.5246
+  - Interpretation: At the district scale, districts with higher CRM adoption
+    tend to still have higher CH4 emissions.
+
+2. MULTIVARIATE OLS REGRESSION (Village Scale):
+  We ran two models against two dependent variables (Predicted CH4 and Actual CH4).
+  Key variables after adjusting for confounding factors:
+
+  Total_Machines Coefficient: +0.0120 (p=5.893e-04)
+  Direction: Positive (Contradicts)
+
+  In_Situ Coefficient: +0.0931 (p=3.936e-03)
+  Direction: Positive (Contradicts)
+
+  Summary of OLS Results across all machinery types:
+    - Predicted_CH4_ppb | Model A (Total) | Total_Machines  | Coef: +0.0120 | Sig: Yes
+    - Predicted_CH4_ppb | Model B (Disaggregated) | In_Situ         | Coef: +0.0931 | Sig: Yes
+    - Predicted_CH4_ppb | Model B (Disaggregated) | Ex_Situ         | Coef: -0.0404 | Sig: No
+    - Predicted_CH4_ppb | Model B (Disaggregated) | Prime_Mover     | Coef: -0.1117 | Sig: No
+    - Predicted_CH4_ppb | Model B (Disaggregated) | General         | Coef: +0.0431 | Sig: No
+    - Predicted_CH4_ppb | Model B (Disaggregated) | CRM             | Coef: -0.0304 | Sig: No
+    - Predicted_CH4_ppb | Model B (Disaggregated) | SMAM            | Coef: +0.0441 | Sig: No
+    - Predicted_CH4_ppb | Model B (Disaggregated) | CDP             | Coef: -0.0297 | Sig: No
+    - CH4_Annual_Average | Model A (Total) | Total_Machines  | Coef: +0.0133 | Sig: Yes
+    - CH4_Annual_Average | Model B (Disaggregated) | In_Situ         | Coef: +0.1090 | Sig: Yes
+    - CH4_Annual_Average | Model B (Disaggregated) | Ex_Situ         | Coef: -0.0802 | Sig: No
+    - CH4_Annual_Average | Model B (Disaggregated) | Prime_Mover     | Coef: -0.1642 | Sig: No
+    - CH4_Annual_Average | Model B (Disaggregated) | General         | Coef: +0.0864 | Sig: No
+    - CH4_Annual_Average | Model B (Disaggregated) | CRM             | Coef: -0.0349 | Sig: No
+    - CH4_Annual_Average | Model B (Disaggregated) | SMAM            | Coef: +0.0404 | Sig: No
+    - CH4_Annual_Average | Model B (Disaggregated) | CDP             | Coef: -0.0546 | Sig: No
+
+3. SHAP NON-LINEAR ANALYSIS (XGBoost):
+  - Evaluated the global impact and marginal effect of machinery variables.
+  - The SHAP Dependence plots show the non-linear relationship between machinery
+    counts and CH4 impact, holding all other features constant.
+
+SCIENTIFIC CONCLUSION:
+  CONTRADICTED: Even after aggressively controlling for village size, irrigation, climate,
+  and district geography, machinery penetration does NOT exhibit a mitigating effect on CH4 emissions.
+  In fact, the association remains positive.
+
+  WHY?
+  This strongly implies that either:
+   A) Machinery allocation is heavily endogenous to high-emission practices beyond what
+      our controls capture.
+   B) The actual field utilization of the allocated machinery is too low to offset
+      the massive residue burning baseline.
+   C) The intervention is too recent to manifest in the historical CH4 signal.
+================================================================================

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Ignore huge data files to prevent GitHub push errors
+outputs/gee_layers/*.geojson
+outputs/gee_layers/*.zip
+data/raw/*.xlsx
+data/raw/*.csv
+data/merged/*.csv

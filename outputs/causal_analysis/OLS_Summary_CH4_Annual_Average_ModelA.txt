@@ -1,0 +1,58 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:     CH4_Annual_Average   R-squared:                       0.697
+Model:                            OLS   Adj. R-squared:                  0.694
+Method:                 Least Squares   F-statistic:                     245.8
+Date:                Tue, 16 Jun 2026   Prob (F-statistic):               0.00
+Time:                        04:33:28   Log-Likelihood:                -8590.4
+No. Observations:                3339   AIC:                         1.724e+04
+Df Residuals:                    3307   BIC:                         1.744e+04
+Df Model:                          31                                         
+Covariance Type:            nonrobust                                         
+===================================================================================================================================
+                                                                      coef    std err          t      P>|t|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------------------------
+const                                                            1883.9720      7.184    262.240      0.000    1869.886    1898.058
+Total_Machines                                                      0.0133      0.004      3.017      0.003       0.005       0.022
+cropland_frac                                                      -1.8608      0.699     -2.661      0.008      -3.232      -0.490
+NDVI_10m                                                           18.1108      7.363      2.460      0.014       3.674      32.548
+NDWI_10m                                                           24.4548      7.845      3.117      0.002       9.073      39.837
+EVI_10m                                                             1.8821      0.744      2.528      0.012       0.423       3.342
+annual_rainfall_mm                                                 -0.0132      0.001    -12.623      0.000      -0.015      -0.011
+mean_temp_celsius                                                   1.7616      0.289      6.091      0.000       1.194       2.329
+NET SOWN AREA (IN HECTARES) , IF IN ACRES DIVIDE BY 2.47         1.578e-13   3.35e-14      4.709      0.000    9.21e-14    2.24e-13
+TOTAL CULTIVABLE AREA (IN HECTARES), IF IN ACRES DIVIDE BY 2.47    -0.0001   9.72e-05     -1.348      0.178      -0.000    5.95e-05
+Hidden_Irrigation_Intensity                                        -0.0058      0.143     -0.040      0.968      -0.286       0.275
+Hidden_Farming_Penetration                                          0.4707      0.229      2.052      0.040       0.021       0.920
+BARNALA                                                            -5.4317      0.521    -10.421      0.000      -6.454      -4.410
+BATHINDA                                                          -10.0341      0.568    -17.681      0.000     -11.147      -8.921
+FARIDKOT                                                           -7.8065      0.603    -12.954      0.000      -8.988      -6.625
+FATEHGARH SAHIB                                                    -7.1584      0.412    -17.372      0.000      -7.966      -6.350
+FAZILKA                                                            -9.9764      0.613    -16.284      0.000     -11.178      -8.775
+FIROZEPUR                                                          -2.9153      0.505     -5.771      0.000      -3.906      -1.925
+GURDASPUR                                                          -5.7615      0.324    -17.774      0.000      -6.397      -5.126
+HOSHIARPUR                                                         -9.7770      0.318    -30.765      0.000     -10.400      -9.154
+JALANDHAR                                                          -0.9181      0.354     -2.590      0.010      -1.613      -0.223
+KAPURTHALA                                                          0.5603      0.379      1.480      0.139      -0.182       1.303
+LUDHIANA                                                           -2.1314      0.319     -6.680      0.000      -2.757      -1.506
+MANSA                                                              -9.5813      0.535    -17.905      0.000     -10.630      -8.532
+MOGA                                                               -3.9859      0.468     -8.515      0.000      -4.904      -3.068
+PATHANKOT                                                         -12.4592      0.618    -20.166      0.000     -13.671     -11.248
+PATIALA                                                            -4.1107      0.357    -11.528      0.000      -4.810      -3.412
+RUPNAGAR                                                          -10.0306      0.409    -24.520      0.000     -10.833      -9.229
+S.A.S Nagar                                                        -7.3061      0.444    -16.472      0.000      -8.176      -6.436
+SANGRUR                                                            -4.3427      0.405    -10.714      0.000      -5.137      -3.548
+SRI MUKTSAR SAHIB                                                 -10.9001      0.626    -17.400      0.000     -12.128      -9.672
+Shahid Bhagat Singh Nagar                                          -5.4572      0.466    -11.713      0.000      -6.371      -4.544
+Tarn Taran                                                          4.0977      0.332     12.338      0.000       3.447       4.749
+==============================================================================
+Omnibus:                       58.978   Durbin-Watson:                   1.502
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              117.601
+Skew:                           0.020   Prob(JB):                     2.91e-26
+Kurtosis:                       3.919   Cond. No.                     1.07e+16
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The smallest eigenvalue is 2.81e-23. This might indicate that there are
+strong multicollinearity problems or that the design matrix is singular.

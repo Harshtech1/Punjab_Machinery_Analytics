@@ -1,0 +1,22 @@
+POLICY LANGUAGE AUDIT
+=====================
+Date: June 16, 2026
+
+PURPOSE:
+To ensure all project recommendations, reports, and presentations maintain strict scientific integrity and do not overstate causal relationships.
+
+ISSUES IDENTIFIED AND CORRECTED:
+1. OVERSTATEMENT: "Machinery reduces methane."
+   CORRECTION: "Machinery deployment is associated with observed methane patterns."
+   REASONING: Cross-sectional observational data cannot prove causation, only spatial correlation.
+
+2. OVERSTATEMENT: "CRM failed in these villages."
+   CORRECTION: "These villages represent Policy Failure Zones, where high CRM distribution coincides with high methane emissions, requiring further investigation."
+   REASONING: We do not know if the machines were misused, sold, or if local geography naturally emits more CH4 regardless of CRM.
+
+3. OVERSTATEMENT: "Investing in Priority Villages will lower methane."
+   CORRECTION: "Targeting Priority Villages represents the highest potential value for intervention based on current methane-machinery gaps."
+   REASONING: Avoids guaranteeing outcomes, framing it as an optimization strategy instead.
+
+VERDICT:
+All outgoing language must be scrubbed to reflect "associations" and "priority zones" rather than definitive "causation" and "guaranteed reductions."
